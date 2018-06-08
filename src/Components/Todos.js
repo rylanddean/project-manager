@@ -19,7 +19,7 @@ class Todos extends Component {
     }
     return (
       <div className="Projects">
-      <h3>Latest Projects</h3>
+      <h3>Todo List</h3>
         {todoItems}
       </div>
     );
