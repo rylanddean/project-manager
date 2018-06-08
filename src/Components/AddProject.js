@@ -6,24 +6,30 @@ import ProjectItem from './ProjectItem';
 class AddProject extends Component {
   constructor(){
     super();
+    // Onload create the new project object
     this.state = {
       newProject:{}
     }
   };
 
+  // define the category arrary for use in the select element
   static defaultProps = {
     categories: ['Web Design','Web Development','Mobile Development']
   }
 
+  // on form submit gather project data and populate
   handleSubmit(e){
+    // Check if title value is empty
     if(this.refs.title.value === ''){
       alert('Title is required');
     }else{
+      // Populate the new project object with the form data
       this.setState({newProject:{
         id: uuid.v4(),
         title: this.refs.title.value,
         category: this.refs.category.value
       }}, function(){
+        // Assign the new project to the AddProject property for use in the Projects Component
         this.props.addProject(this.state.newProject);
       });
     }
@@ -31,6 +37,7 @@ class AddProject extends Component {
   }
 
   render() {
+    // Iterate through the categories array and populate the DOM with option elements
     let categoryOptions = this.props.categories.map(category => {
       return <option key={category} value={category}>{category}</option>
     });
@@ -57,6 +64,7 @@ class AddProject extends Component {
   }
 }
 
+// Verify the types of the properties
 AddProject.propTypes = {
   categories: PropTypes.array,
   AddProject: PropTypes.func

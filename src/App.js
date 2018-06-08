@@ -15,6 +15,7 @@ class App extends Component {
     }
   }
 
+  // Fetch todo list object from jsonplaceholder via AJAX call
   getTodos(){
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(res => res.json())
@@ -32,6 +33,7 @@ class App extends Component {
       )
   }
 
+  // Get projects obj from local array
   getProjects(){
     this.setState({projects: [
       {
@@ -52,22 +54,25 @@ class App extends Component {
     ]});
   }
 
+  // Onload get projects and todos
   componentWillMount(){
     this.getProjects();
     this.getTodos();
   }
 
+  // When loaded get projects and todos
   componentDidMount(){
-    this.getProjects();
     this.getTodos();
   }
 
+  // Get projects and append the new project from the input form
   handleAddProject(project){
     let projects = this.state.projects;
     projects.push(project);
     this.setState({projects:projects});
   }
 
+  // Get projects and remove the selected project from the array
   handleDeleteProject(id){
     let projects = this.state.projects;
     let index = projects.findIndex(x => x.id === id);
